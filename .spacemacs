@@ -28,7 +28,9 @@ values."
      emacs-lisp
      git
      markdown
+     lua
      org
+     spotify
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
@@ -201,6 +203,9 @@ layers configuration. You are free to put any user code."
   ;; The above is the default in recent emacsen
   (setq org-todo-keywords
         '((sequence "TODO" "IN-PROGRESS" "WAITING" "DONE")))
+
+  (when (fboundp 'windmove-default-keybindings)
+    (windmove-default-keybindings))
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
