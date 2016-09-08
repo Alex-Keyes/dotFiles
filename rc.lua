@@ -220,18 +220,6 @@ function ()
     mpdwidget.update()
 end)))
 
--- Battery
-batwidget = lain.widgets.bat({
-    settings = function()
-        bat_header = " Bat "
-        bat_p      = bat_now.perc .. " "
-        if bat_now.ac_status == 1 then
-            bat_p = bat_p .. "Plugged "
-        end
-        widget:set_markup(markup(blue, bat_header) .. bat_p)
-    end
-})
-
 -- ALSA volume bar
 myvolumebar = lain.widgets.alsabar({
     card   = "0",
@@ -385,19 +373,22 @@ for s = 1, screen.count() do
     -- Widgets that are aligned to the upper right
     local right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then right_layout:add(wibox.widget.systray()) end
-    --right_layout:add(mailwidget)
-    right_layout:add(batwidget)
-    right_layout:add(spr_right)
-    right_layout:add(prev_icon)
-    right_layout:add(next_icon)
-    right_layout:add(stop_icon)
-    right_layout:add(play_pause_icon)
-    right_layout:add(bar)
-    right_layout:add(mpd_icon)
-    right_layout:add(musicwidget)
-    right_layout:add(bar)
-    right_layout:add(spr_very_small)
+    --right_layout:add(spr_right)
+    --right_layout:add(prev_icon)
+    --right_layout:add(next_icon)
+    --right_layout:add(stop_icon)
+    --right_layout:add(play_pause_icon)
+    --right_layout:add(bar)
+    --right_layout:add(mpd_icon)
+    --right_layout:add(musicwidget)
+    --right_layout:add(bar)
+    --right_layout:add(spr_very_small)
     right_layout:add(volumewidget)
+    right_layout:add(calendar_icon)
+    right_layout:add(calendarwidget)
+    right_layout:add(bottom_bar)
+    right_layout:add(clock_icon)
+    right_layout:add(clockwidget)
     right_layout:add(spr_left)
 
     -- Now bring it all together (with the tasklist in the middle)
@@ -424,11 +415,6 @@ for s = 1, screen.count() do
     bottom_right_layout:add(cpu_icon)
     bottom_right_layout:add(cpuwidget)
     bottom_right_layout:add(bottom_bar)
-    bottom_right_layout:add(calendar_icon)
-    bottom_right_layout:add(calendarwidget)
-    bottom_right_layout:add(bottom_bar)
-    bottom_right_layout:add(clock_icon)
-    bottom_right_layout:add(clockwidget)
     bottom_right_layout:add(last)
 
     -- Now bring it all together (with the tasklist in the middle)
