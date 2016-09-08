@@ -1,7 +1,7 @@
 --[[
                                 
-     Holo Awesome WM config 2.0 
-     github.com/copycat-killer  
+     Alex's Awesome WM config 
+     github.com/alex-keyes
                                 
 --]]
 
