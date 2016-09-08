@@ -30,6 +30,7 @@ values."
      markdown
      lua
      org
+     dockerfile
      spotify
      ;; (shell :variables
      ;;        shell-default-height 30
