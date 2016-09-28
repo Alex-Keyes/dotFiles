@@ -445,7 +445,7 @@ root.buttons(awful.util.table.join(
 globalkeys = awful.util.table.join(
 
     --lock Screen
-    awful.key({ modkey }, "F4", function () awful.util.spawn("xscreensaver-command -lock") end),
+    awful.key({ }, "XF86Sleep", function () awful.util.spawn("xscreensaver-command -lock") end),
 
 
     -- Take a screenshot
@@ -456,10 +456,6 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey }, "Left",   awful.tag.viewprev       ),
     awful.key({ modkey }, "Right",  awful.tag.viewnext       ),
     awful.key({ modkey }, "Escape", awful.tag.history.restore),
-
-    -- Non-empty tag browsing
-    awful.key({ altkey }, "Left", function () lain.util.tag_view_nonempty(-1) end),
-    awful.key({ altkey }, "Right", function () lain.util.tag_view_nonempty(1) end),
 
     -- Default client focus
     awful.key({ altkey }, "k",
@@ -544,20 +540,25 @@ globalkeys = awful.util.table.join(
 
     -- Widgets popups
     awful.key({ altkey,           }, "c",      function () lain.widgets.calendar:show(7) end),
-    awful.key({ altkey,           }, "w",      function () myweather.show(7) end),
+	
+    --Spotify control
+    awful.key({ }, "XF86AudioPlay", function () awful.util.spawn_with_shell("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause") end),
+    awful.key({ }, "XF86AudioNext", function () awful.util.spawn_with_shell("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next") end),
+    awful.key({ }, "XF86AudioPrev", function () awful.util.spawn_with_shell("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous") end),
+
 
     -- ALSA volume control
-    awful.key({ altkey }, "Up",
+    awful.key({ }, "XF86AudioRaiseVolume",
         function ()
             os.execute(string.format("amixer set %s %s+", myvolumebar.channel, myvolumebar.step))
             myvolumebar.update()
         end),
-    awful.key({ altkey }, "Down",
+    awful.key({ }, "XF86AudioLowerVolume",
         function ()
             os.execute(string.format("amixer set %s %s-", myvolumebar.channel, myvolumebar.step))
             myvolumebar.update()
         end),
-    awful.key({ altkey }, "m",
+    awful.key({ }, "XF86AudioMute",
         function ()
             os.execute(string.format("amixer set %s toggle", myvolumebar.channel))
             myvolumebar.update()
