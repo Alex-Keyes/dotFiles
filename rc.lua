@@ -1,5 +1,5 @@
+
 --[[
-                                
      Alex's Awesome WM config 
      github.com/alex-keyes
                                 
@@ -102,7 +102,7 @@ end
 -- }}}
 
 -- {{{ Menu
-mymainmenu = awful.menu.new({ items = require("menugen").build_menu(),
+mymainmenu = awful.menu.new({ items = require("freedesktop").menu.build(),
                               theme = { height = 16, width = 130 }})
 mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
                                      menu = mymainmenu })
