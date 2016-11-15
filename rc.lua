@@ -422,7 +422,7 @@ root.buttons(awful.util.table.join(
 globalkeys = awful.util.table.join(
 
     --lock Screen
-    awful.key({ modkey }, "Backspace", function () awful.util.spawn("xscreensaver-command -lock") end),
+    awful.key({ modkey }, "s", function () awful.util.spawn("xscreensaver-command -lock") end),
 
 
     -- Take a screenshot
@@ -778,5 +778,10 @@ for s = 1, screen.count() do screen[s]:connect_signal("arrange",
 end
 -- }}}
 
--- Standard program
+-- Start xscreensaver
 awful.util.spawn_with_shell("xscreensaver -no-splash")
+
+-- Start Rofi with Awesome
+awful.util.spawn_with_shell("rofi -key-window F1 -key-run F2 -key-ssh F3")
+
+
