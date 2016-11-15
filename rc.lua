@@ -1,4 +1,3 @@
-
 --[[
      Alex's Awesome WM config 
      github.com/alex-keyes
@@ -57,8 +56,8 @@ run_once("unclutter -root")
 beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/holo/theme.lua")
 
 -- common
-modkey     = "Mod4"
-altkey     = "Mod1"
+modkey     = "Mod1"
+altkey     = "Mod4"
 terminal   = "x-terminal-emulator"
 editor     = os.getenv("EDITOR") or "nano" or "vi"
 editor_cmd = terminal .. " -e " .. editor
@@ -130,28 +129,6 @@ calendarwidget = wibox.widget.background()
 calendarwidget:set_widget(mytextcalendar)
 calendarwidget:set_bgimage(beautiful.widget_bg)
 lain.widgets.calendar:attach(calendarwidget, { fg = "#FFFFFF", position = "bottom_right" })
-
---[[ Mail IMAP check
--- commented because it needs to be set before use
-mailwidget = lain.widgets.imap({
-    timeout  = 180,
-    server   = "server",
-    mail     = "mail",
-    password = "keyring get mail",
-    settings = function()
-        mail_notification_preset.fg = "#FFFFFF"
-        mail  = ""
-        count = ""
-
-        if mailcount > 0 then
-            mail = "Mail "
-            count = mailcount .. " "
-        end
-
-        widget:set_markup(markup(blue, mail) .. markup("#FFFFFF", count))
-    end
-})
-]]
 
 -- MPD
 mpd_icon = wibox.widget.imagebox()
@@ -445,7 +422,7 @@ root.buttons(awful.util.table.join(
 globalkeys = awful.util.table.join(
 
     --lock Screen
-    awful.key({ }, "XF86Sleep", function () awful.util.spawn("xscreensaver-command -lock") end),
+    awful.key({ modkey }, "Backspace", function () awful.util.spawn("xscreensaver-command -lock") end),
 
 
     -- Take a screenshot
@@ -457,6 +434,11 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey }, "Right",  awful.tag.viewnext       ),
     awful.key({ modkey }, "Escape", awful.tag.history.restore),
 
+    -- Change Monitor Focus
+    awful.key({modkey,            }, "F1",     function () awful.screen.focus(1) end),
+    awful.key({modkey,            }, "F2",     function () awful.screen.focus(2) end),
+    awful.key({modkey,            }, "F3",     function () awful.screen.focus(3) end),
+  
     -- Default client focus
     awful.key({ altkey }, "k",
         function ()
@@ -504,8 +486,8 @@ globalkeys = awful.util.table.join(
     end),
 
     -- On the fly useless gaps change
-    awful.key({ altkey, "Control" }, "+", function () lain.util.useless_gaps_resize(1) end),
-    awful.key({ altkey, "Control" }, "-", function () lain.util.useless_gaps_resize(-1) end),
+    awful.key({ altkey, "Control" }, "0", function () lain.util.useless_gaps_resize(1) end),
+    awful.key({ altkey, "Control" }, "9", function () lain.util.useless_gaps_resize(-1) end),
 
     -- Layout manipulation
     awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
@@ -548,17 +530,17 @@ globalkeys = awful.util.table.join(
 
 
     -- ALSA volume control
-    awful.key({ }, "XF86AudioRaiseVolume",
+    awful.key({ }, "Vol+",
         function ()
             os.execute(string.format("amixer set %s %s+", myvolumebar.channel, myvolumebar.step))
             myvolumebar.update()
         end),
-    awful.key({ }, "XF86AudioLowerVolume",
+    awful.key({ }, "Vol-",
         function ()
             os.execute(string.format("amixer set %s %s-", myvolumebar.channel, myvolumebar.step))
             myvolumebar.update()
         end),
-    awful.key({ }, "XF86AudioMute",
+    awful.key({ }, "Mute",
         function ()
             os.execute(string.format("amixer set %s toggle", myvolumebar.channel))
             myvolumebar.update()
@@ -615,7 +597,8 @@ clientkeys = awful.util.table.join(
     awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end),
     awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ),
     awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end),
-    awful.key({ modkey,           }, "o",      awful.client.movetoscreen                        ),
+    awful.key({ modkey,           }, "o",      function(c) awful.client.movetoscreen(c,c.screen-1) end ),
+    awful.key({ modkey,           }, "p",      function(c) awful.client.movetoscreen(c,c.screen+1) end ), 
     awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end),
     awful.key({ modkey,           }, "n",
         function (c)
