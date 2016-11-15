@@ -402,7 +402,7 @@ for s = 1, screen.count() do
     mybottomwibox[s]:set_widget(bottom_layout)
 
     -- Set proper backgrounds, instead of beautiful.bg_normal
-    mywibox[s]:set_bg(beautiful.topbar_path .. math.floor((screen[mouse.screen].workarea.width)) .. ".png")
+--    mywibox[s]:set_bg(beautiful.topbar_path .. math.floor((screen[mouse.screen].workarea.width)) .. ".png")
     mybottomwibox[s]:set_bg("#242424")
 
     -- Create a borderbox above the bottomwibox
@@ -784,4 +784,6 @@ awful.util.spawn_with_shell("xscreensaver -no-splash")
 -- Start Rofi with Awesome
 awful.util.spawn_with_shell("rofi -key-window F1 -key-run F2 -key-ssh F3")
 
+-- Start with Unity Settings
+awful.util.spawn_with_shell("unity-settings-daemon")
 
