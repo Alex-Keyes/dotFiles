@@ -1,0 +1,13 @@
+! ------------------------------------------------------------------------------
+! ROFI theme
+! ------------------------------------------------------------------------------
+rofi.lines: 10
+rofi.width: 25
+rofi.padding: 5
+rofi.opacity: 90
+rofi.color-enabled: true
+rofi.fullscreen: true
+rofi.color-window:  #272727, #272727, #272727
+rofi.color-normal:  #272727, #FAFAFA, #272727, #FAFAFA, #272727
+rofi.color-active:  #272727, #FAFAFA, #272727, #272727, #FAFAFA
+rofi.color-urgent:  #272727, #FAFAFA, #272727, #272727, #FF6B6B
