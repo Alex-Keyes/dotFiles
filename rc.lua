@@ -424,8 +424,8 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey }, "Escape", awful.tag.history.restore),
 
     -- Change Monitor Focus
-    awful.key({modkey,            }, "F1",     function () awful.screen.focus(1) end),
-    awful.key({modkey,            }, "F2",     function () awful.screen.focus(2) end),
+    awful.key({modkey,            }, "F1",     function () awful.screen.focus(2) end),
+    awful.key({modkey,            }, "F2",     function () awful.screen.focus(1) end),
     awful.key({modkey,            }, "F3",     function () awful.screen.focus(3) end),
   
     -- Default client focus
@@ -502,7 +502,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Control" }, "n",      awful.client.restore),
 
     -- Standard program
-    awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
+    awful.key({ modkey, "Shift"   }, "Return", function () awful.util.spawn(terminal) end),
     awful.key({ modkey, "Control" }, "r",      awesome.restart),
     awful.key({ modkey, "Shift"   }, "q",      awesome.quit),
 
