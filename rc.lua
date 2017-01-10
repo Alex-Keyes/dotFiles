@@ -1,8 +1,3 @@
---[[
-     Alex's Awesome WM config 
-     github.com/alex-keyes
-                                
---]]
 
 -- {{{ Required libraries
 local gears     = require("gears")
@@ -75,16 +70,9 @@ local layouts = {
     lain.layout.uselesstile.top
 }
 
--- quake terminal
-local quakeconsole = {}
-for s = 1, screen.count() do
-   quakeconsole[s] = lain.util.quake({ app = terminal, wibox_height = 32})
-end
--- }}}
-
 -- {{{ Tags
 tags = {
-   names = { " WEB ", " TERMINAL ", " FILES ", " OTHER " },
+   names = { " WEB ", " TERMINAL ", " EMACS ", " OTHER " },
    layout = { layouts[1], layouts[3], layouts[2], layouts[4] }
 }
 for s = 1, screen.count() do
@@ -233,6 +221,7 @@ cpuwidget:set_widget(cpu_widget)
 cpuwidget:set_bgimage(beautiful.widget_bg)
 cpu_icon = wibox.widget.imagebox()
 cpu_icon:set_image(beautiful.cpu)
+
 
 -- Net
 netdown_icon = wibox.widget.imagebox()
