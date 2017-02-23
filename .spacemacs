@@ -315,6 +315,7 @@ you should place your code here."
     (revert-buffer :ignore-auto :noconfirm))
 
   (require 'minimap)
+  (minimap-mode 1)
 
   (require 'sublimity)
   (require 'sublimity-scroll)
